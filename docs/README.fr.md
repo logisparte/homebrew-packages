@@ -1,6 +1,6 @@
 # homebrew-packages
 
-> *Read in [English](/README.md)*
+> *Read in [English](/docs/README.md)*
 
 Ce dépôt contient les définitions des paquets de Logisparte pour le gestionnaire de paquet [Homebrew](https://brew.sh).
 

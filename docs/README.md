@@ -1,6 +1,6 @@
 # homebrew-packages
 
-> *Lire en [Français](/README.fr.md)*
+> *Lire en [Français](/docs/README.fr.md)*
 
 This repository contains Logisparte's package definitions for the [Homebrew](https://brew.sh) package manager.
 
