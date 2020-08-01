@@ -15,7 +15,8 @@ jobs:
         run: |
           echo "$GIT_TOKEN" \
           | docker login docker.pkg.github.com --username "$GIT_USERNAME" --password-stdin
-  test:
+  test-packages:
+    needs: login-to-docker-registry
     runs-on: ubuntu-latest
     container: docker.pkg.github.com/logisparte/docker-images/helot:0.1.0
     steps:
