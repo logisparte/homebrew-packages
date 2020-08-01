@@ -5,22 +5,29 @@ on:
     branches: [ master ]
 
 jobs:
+  login-to-docker-registry:
+    runs-on: ubuntu-latest
+    env:
+      GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+      GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+    steps:
+      - name: Login to Docker container registry
+        run: |
+          echo "$GIT_TOKEN" \
+          | docker login docker.pkg.github.com --username "$GIT_USERNAME" --password-stdin
   test:
     runs-on: ubuntu-latest
     container: docker.pkg.github.com/logisparte/docker-images/helot:0.1.0
     steps:
-    - uses: actions/checkout@v2
-    - name: Get package definitions
-      run: |
-        TAP_FOLDER="/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/logisparte/homebrew-packages"
-        brew tap logisparte/packages
-        cp "$GITHUB_WORKSPACE"/*.rb "$TAP_FOLDER"
-    - name: Install packages
-      run: |
-        brew install shell-helpers
-    - name: Audit packages
-      run: |
-        brew audit shell-helpers
-    - name: Test packages
-      run: |
-        brew test shell-helpers
+      - uses: actions/checkout@v2
+      - name: Get package definitions
+        run: |
+          TAP_FOLDER="/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/logisparte/homebrew-packages"
+          brew tap logisparte/packages
+          cp "$GITHUB_WORKSPACE"/*.rb "$TAP_FOLDER"
+      - name: Install packages
+        run: brew install shell-helpers
+      - name: Audit packages
+        run: brew audit shell-helpers
+      - name: Test packages
+        run: brew test shell-helpers
