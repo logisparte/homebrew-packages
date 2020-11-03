@@ -7,20 +7,22 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: homebrew/brew  
+    container: homebrew/brew
+    env:
+      PACKAGE_INDEX_DIRECTORY: /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/logisparte/homebrew-packages
     steps:
-    - uses: actions/checkout@v2
-    - name: Get package definitions
-      run: |
-        TAP_FOLDER="/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/logisparte/homebrew-packages"
-        brew tap logisparte/packages
-        cp "$GITHUB_WORKSPACE"/*.rb "$TAP_FOLDER"
-    - name: Install packages
-      run: |
-        brew install shell-helpers
-    - name: Audit packages
-      run: |
-        brew audit shell-helpers
-    - name: Test packages
-      run: |
-        brew test shell-helpers
+      - uses: actions/checkout@v2
+
+      - name: Get package definitions
+        run: |
+          brew tap logisparte/packages
+          cp "$GITHUB_WORKSPACE"/*.rb "$PACKAGE_INDEX_DIRECTORY"
+
+      - name: Install packages
+        run: brew install shell-helpers
+
+      - name: Audit packages
+        run: brew audit shell-helpers
+
+      - name: Test packages
+        run: brew test shell-helpers
