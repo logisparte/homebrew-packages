@@ -1,15 +1,37 @@
+# frozen_string_literal: true
+
 class ShellHelpers < Formula
-  desc "Shell functions that simplify scripting"
+  desc "Collection of POSIX-compatible functions that simplify writing shell code"
   homepage "https://github.com/logisparte/shell-helpers"
-  url "https://github.com/logisparte/shell-helpers/archive/0.3.1.tar.gz"
-  sha256 "2e821c805ce2ccb5dabd95c90f3cb0188ade3a11357dfa875f5add9279e90507"
-  license "MIT"
+  url "https://packages.logisparte.com/shell-helpers/shell-helpers-0.5.2.tar.gz"
+  sha256 "8dfbd9b0bbe7ef9988b5dae165dfa781cc3c635819cfc46dc8609cfe22114267"
+  license "GPL-3.0"
 
   def install
-    bin.install "shell-helpers"
+    lib.install Dir["*"]
+  end
+
+  def caveats
+    <<~EOS
+      To complete the installation, add this variable in your PATH:
+
+      export SHELL_HELPERS="#{lib}"
+
+    EOS
   end
 
   test do
-    assert_match /OK/, shell_output(". shell-helpers && report success OK")
+    test_script = testpath/"test_script"
+    test_script.write <<~EOS
+      #!/bin/sh -e
+
+      export SHELL_HELPERS="#{lib}"
+      . "$SHELL_HELPERS/report"
+      report success "OK"
+
+    EOS
+
+    chmod "+x", test_script.to_s
+    assert_match /OK/, shell_output(test_script.to_s)
   end
 end
