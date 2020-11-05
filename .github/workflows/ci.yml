@@ -8,21 +8,25 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container: homebrew/brew
-    env:
-      PACKAGE_INDEX_DIRECTORY: /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/logisparte/homebrew-packages
     steps:
       - uses: actions/checkout@v2
 
-      - name: Get package definitions
-        run: |
-          brew tap logisparte/packages
-          cp "$GITHUB_WORKSPACE"/*.rb "$PACKAGE_INDEX_DIRECTORY"
-
       - name: Install packages
-        run: brew install shell-helpers
+        run: |
+          for PACKAGE_DEFINITION in "$GITHUB_WORKSPACE"/*.rb; do
+            brew install --formula "$PACKAGE_DEFINITION"
+          done
 
       - name: Audit packages
-        run: brew audit shell-helpers
+        run: |
+          for PACKAGE_DEFINITION in "$GITHUB_WORKSPACE"/*.rb; do
+            PACKAGE_NAME=$(basename "$PACKAGE_DEFINITION" .rb)
+            brew audit "$PACKAGE_NAME"
+          done
 
       - name: Test packages
-        run: brew test shell-helpers
+        run: |
+          for PACKAGE_DEFINITION in "$GITHUB_WORKSPACE"/*.rb; do
+            PACKAGE_NAME=$(basename "$PACKAGE_DEFINITION" .rb)
+            brew test "$PACKAGE_NAME"
+          done
