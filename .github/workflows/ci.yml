@@ -7,26 +7,30 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: homebrew/brew
+    container:
+      image: homebrew/brew
+      env:
+        GIT_BRANCH: ${{ github.head_ref }}
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Install packages
+      - name: Clone (from package index)
         run: |
-          for PACKAGE_DEFINITION in "$GITHUB_WORKSPACE"/*.rb; do
-            brew install --formula "$PACKAGE_DEFINITION"
-          done
+          brew tap logisparte/packages
+          brew update
+          cd "$(brew --prefix)/Homebrew/Library/Taps/logisparte/homebrew-packages"
+          git checkout "$GIT_BRANCH"
 
-      - name: Audit packages
+      - name: Verify 'shell-helpers'
         run: |
-          for PACKAGE_DEFINITION in "$GITHUB_WORKSPACE"/*.rb; do
-            PACKAGE_NAME=$(basename "$PACKAGE_DEFINITION" .rb)
-            brew audit "$PACKAGE_NAME"
-          done
+          brew cat shell-helpers
+          brew install shell-helpers
+          brew audit shell-helpers
+          brew test shell-helpers
+          brew uninstall shell-helpers
 
-      - name: Test packages
+      - name: Verify 'kano'
         run: |
-          for PACKAGE_DEFINITION in "$GITHUB_WORKSPACE"/*.rb; do
-            PACKAGE_NAME=$(basename "$PACKAGE_DEFINITION" .rb)
-            brew test "$PACKAGE_NAME"
-          done
+          brew cat kano
+          brew install kano
+          brew audit kano
+          brew test kano
+          brew uninstall kano
