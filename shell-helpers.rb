@@ -3,19 +3,19 @@
 class ShellHelpers < Formula
   desc "Collection of POSIX-compatible functions that simplify writing shell code"
   homepage "https://github.com/logisparte/shell-helpers"
-  url "https://packages.logisparte.com/shell-helpers/shell-helpers-0.5.4.tar.gz"
-  sha256 "6b24f8862162aabe5b686dad2f06475f082cdb76ac2937921cbc05a48c740cb2"
-  license "GPL-3.0"
+  url "https://packages.logisparte.com/shell-helpers/shell-helpers-0.5.7.tar.gz"
+  sha256 "f3ae389d4d61cb6a46a2364578064d93c1ab0e692636844c48962c90032ffa2a"
+  license "GPL-3.0-only"
 
   def install
-    lib.install Dir["*"]
+    libexec.install Dir["*"]
   end
 
   def caveats
     <<~EOS
       To complete the installation, add this variable in your PATH:
 
-      export SHELL_HELPERS="#{lib}"
+      export SHELL_HELPERS="#{libexec}"
 
     EOS
   end
@@ -25,7 +25,7 @@ class ShellHelpers < Formula
     test_script.write <<~EOS
       #!/bin/sh -e
 
-      export SHELL_HELPERS="#{lib}"
+      export SHELL_HELPERS="#{libexec}"
       . "$SHELL_HELPERS/report"
       report success "OK"
 
