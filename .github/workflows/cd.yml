@@ -17,8 +17,16 @@ jobs:
         password: ${{ secrets.GIT_TOKEN }}
       env:
         GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
-        GIT_BRANCH: ${{ github.head_ref }}
+        GIT_BRANCH: ${{ github.event.workflow_run.head_ref }}
     steps:
+      - uses: actions/checkout@v2
+        name: Clone
+
+      - name: Print workflow_run context
+        env:
+          WORKFLOW_RUN_CONTEXT: ${{ toJSON(github.event.workflow_run) }}
+        run: echo "$WORKFLOW_RUN_CONTEXT"
+
       - name: Merge successful pull request
         run: |
           echo "$GIT_TOKEN" | gh auth login --with-token
