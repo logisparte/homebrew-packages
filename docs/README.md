@@ -1,19 +1,21 @@
 # homebrew-packages
 
-> *Lire en [Français](/docs/README.fr.md)*
+> Lire en [Français](/docs/README.fr.md)
 
-This repository contains Logisparte's package definitions for the [Homebrew](https://brew.sh) package manager.
+Logisparte's package index for the [Homebrew](https://brew.sh) package manager
 
-## Installation
+## Usage
 
-The first time you'll install one of our packages, you'll first have to do:
+First, track the package index:
 
 ```shell
 brew tap logisparte/packages
 ```
 
-This will allow Homebrew to find our package definitions. You'll then be able to  do:
+Then, install any of its packages:
 
 ```shell
 brew install <package>
 ```
+
+> Learn more about [Homebrew taps](https://docs.brew.sh/Taps) (third-party package indexes)
