@@ -1,19 +1,21 @@
 # homebrew-packages
 
-> *Read in [English](/docs/README.md)*
+> Read in [English](/docs/README.md)
 
-Ce dépôt contient les définitions des paquets de Logisparte pour le gestionnaire de paquet [Homebrew](https://brew.sh).
+Index des paquets de Logisparte pour le gestionnaire de paquet [Homebrew](https://brew.sh)
 
-## Installation
+## Usage
 
-La première fois que vous installerez un de nos paquets, vous devrez d'abord faire :
+Tout d'abord, suivre l'index de paquet :
 
 ```shell
 brew tap logisparte/packages
 ```
 
-Cela permettra à Homebrew de trouver nos définitions de paquet. Vous pourrez ensuite faire :
+Ensuite, installer un de ses paquets :
 
 ```shell
 brew install <paquet>
 ```
+
+> En apprendre plus sur les [taps Homebrew](https://docs.brew.sh/Taps) (index de paquets tiers)
