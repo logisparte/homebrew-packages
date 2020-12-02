@@ -1,0 +1,25 @@
+﻿name: CD
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+
+jobs:
+  merge-successful:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    container:
+      image: docker.pkg.github.com/logisparte/docker-images/helot:latest
+      credentials:
+        username: ${{ secrets.GIT_USERNAME }}
+        password: ${{ secrets.GIT_TOKEN }}
+      env:
+        GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+        GIT_BRANCH: ${{ github.head_ref }}
+    steps:
+      - name: Merge successful pull request
+        run: |
+          echo "$GIT_TOKEN" | gh auth login --with-token
+          gh pr merge "$GIT_BRANCH" --rebase
