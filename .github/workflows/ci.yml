@@ -21,8 +21,8 @@ jobs:
 
       - name: Verify all formulas
         run: |
-          for FORMULA_PATH in "$PWD"/*.rb; do
-            FORMULA="$(basename "$FORMULA_PATH")"
+          for FORMULA_PATH in *.rb; do
+            FORMULA="$(basename "$FORMULA_PATH" | cut -d "." -f 1)"
             brew cat "$FORMULA"
             brew install "$FORMULA"
             brew audit "$FORMULA"
