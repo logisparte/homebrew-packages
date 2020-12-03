@@ -19,18 +19,13 @@ jobs:
           cd "$(brew --prefix)/Homebrew/Library/Taps/logisparte/homebrew-packages"
           git checkout "$GIT_BRANCH"
 
-      - name: Verify 'shell-helpers'
+      - name: Verify all formulas
         run: |
-          brew cat shell-helpers
-          brew install shell-helpers
-          brew audit shell-helpers
-          brew test shell-helpers
-          brew uninstall shell-helpers
-
-      - name: Verify 'kano'
-        run: |
-          brew cat kano
-          brew install kano
-          brew audit kano
-          brew test kano
-          brew uninstall kano
+          for FORMULA_PATH in "$PWD"/*.rb; do
+            FORMULA="$(basename "$FORMULA_PATH")"
+            brew cat "$FORMULA"
+            brew install "$FORMULA"
+            brew audit "$FORMULA"
+            brew test "$FORMULA"
+            brew uninstall "$FORMULA"
+          done
