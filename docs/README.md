@@ -18,4 +18,4 @@ Then, install any of its packages:
 brew install <package>
 ```
 
-> Learn more about [Homebrew taps](https://docs.brew.sh/Taps) (third-party package indexes)
+> Learn more about [taps](https://docs.brew.sh/Taps) (third-party package indexes)
