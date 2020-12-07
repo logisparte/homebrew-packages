@@ -18,4 +18,4 @@ Ensuite, installer un de ses paquets :
 brew install <paquet>
 ```
 
-> En apprendre plus sur les [taps Homebrew](https://docs.brew.sh/Taps) (index de paquets tiers)
+> En apprendre plus sur les [taps](https://docs.brew.sh/Taps) (index de paquets tiers)
