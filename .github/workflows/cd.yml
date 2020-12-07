@@ -6,11 +6,15 @@ on:
     types:
       - completed
 
+env:
+  GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+  GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+
 jobs:
   merge-successful:
     if: |
-      ${{ github.event.workflow_run.conclusion == 'success'
-      && github.event.workflow_run.head_commit.author.email == secrets.GIT_EMAIL }}
+      github.event.workflow_run.conclusion == 'success'
+      && github.event.workflow_run.head_commit.author.email == "$GIT_EMAIL"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,7 +22,6 @@ jobs:
 
       - name: Merge successful pull request
         env:
-          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
           GIT_BRANCH: ${{ github.event.workflow_run.head_branch }}
         run: |
           echo "$GIT_TOKEN" | gh auth login --with-token

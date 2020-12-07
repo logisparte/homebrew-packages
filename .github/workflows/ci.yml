@@ -10,10 +10,11 @@ jobs:
     container:
       image: homebrew/brew
       env:
-        GIT_BRANCH: ${{ github.head_ref }}
         TAP_DIRECTORY: /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/logisparte/homebrew-packages
     steps:
       - name: Clone (from package index)
+        env:
+          GIT_BRANCH: ${{ github.head_ref }}
         run: |
           brew tap logisparte/packages
           brew update
