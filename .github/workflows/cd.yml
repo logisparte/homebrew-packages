@@ -11,18 +11,26 @@ env:
   GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
 
 jobs:
-  merge-successful:
-    if: |
-      github.event.workflow_run.conclusion == 'success'
-      && github.event.workflow_run.head_commit.author.email == GIT_EMAIL
+  check-if-should-automerge:
+    if: github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
+    env:
+      PULL_REQUEST_AUTHOR_EMAIL: ${{ github.event.workflow_run.head_commit.author.email }}
+    steps:
+      - name: Check if should automerge
+        run: [ "$PULL_REQUEST_AUTHOR_EMAIL" = "$GIT_EMAIL" ]
+
+
+  merge-successful:
+    needs: check-if-should-automerge
+    runs-on: ubuntu-latest
+    env:
+      PULL_REQUEST_BRANCH: ${{ github.event.workflow_run.head_branch }}
     steps:
       - uses: actions/checkout@v2
         name: Clone
 
       - name: Merge successful pull request
-        env:
-          GIT_BRANCH: ${{ github.event.workflow_run.head_branch }}
         run: |
           echo "$GIT_TOKEN" | gh auth login --with-token
-          gh pr merge "$GIT_BRANCH" --rebase
+          gh pr merge "$PULL_REQUEST_BRANCH" --rebase
