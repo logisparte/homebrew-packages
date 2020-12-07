@@ -17,9 +17,8 @@ jobs:
     env:
       PULL_REQUEST_AUTHOR_EMAIL: ${{ github.event.workflow_run.head_commit.author.email }}
     steps:
-      - name: Check if should automerge
+      - name: Check if author is Helot
         run: [ "$PULL_REQUEST_AUTHOR_EMAIL" = "$GIT_EMAIL" ]
-
 
   merge-successful:
     needs: check-if-should-automerge
