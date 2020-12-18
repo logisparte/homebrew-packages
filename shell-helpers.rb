@@ -4,7 +4,7 @@ class ShellHelpers < Formula
   desc "Collection of POSIX-compatible functions that simplify writing shell code"
   homepage "https://github.com/logisparte/shell-helpers"
   url "https://packages.logisparte.com/shell-helpers/shell-helpers-0.6.0.tar.gz"
-  sha256 "99dffb2d00d85bb982f957d3635f5058fa5b01caa62df4a55f33f459f8c902bb"
+  sha256 "9aa350620b6c803c90c92bb5b5a6f853c818563c244c573441babde0f570e97e"
   license "GPL-3.0-only"
 
   def install
