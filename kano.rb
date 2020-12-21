@@ -3,8 +3,8 @@
 class Kano < Formula
   desc "Software engineering task management CLI"
   homepage "https://github.com/logisparte/kano"
-  url "https://packages.logisparte.com/kano/kano-0.1.0.tar.gz"
-  sha256 "c409ddbd9f4131c08c34ff9c03cefbd5008d40135b29e4e064d382c7b228ab33"
+  url "https://packages.logisparte.com/kano/kano-0.2.4.tar.gz"
+  sha256 "db00cd52d6eca3206f150f7176168349dc6149dc4327c822a7b7f7c5fef28dac"
   license "GPL-3.0-only"
   depends_on "logisparte/packages/shell-helpers"
 
@@ -18,6 +18,6 @@ class Kano < Formula
       "export SHELL_HELPERS=\"$(brew --prefix)/opt/shell-helpers/libexec\" && kano help",
     )
 
-    assert_match /helped/, help_output
+    assert_match /Show this help message/, help_output
   end
 end
