@@ -3,9 +3,10 @@
 class Kano < Formula
   desc "Software engineering task management CLI"
   homepage "https://github.com/logisparte/kano"
-  url "https://github.com/logisparte/kano/releases/download/2.3.2/kano.tar.gz"
-  sha256 "32f2483b1b1a2c17695ddc7ccda4c5742a40dd4c6d0fc9cf288bedd13d92d677"
+  url "https://github.com/logisparte/kano/releases/download/2.4.0/kano.tar.gz"
+  sha256 "93e8353e821d68b3aa244efd779fe029c784659ec853ed43095d990b510950c3"
   license "GPL-3.0-only"
+  depends_on "docker" => :optional
 
   def install
     libexec.install Dir["libexec/*"]
