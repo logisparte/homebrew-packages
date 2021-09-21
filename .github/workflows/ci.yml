@@ -16,6 +16,7 @@ jobs:
         env:
           GIT_BRANCH: ${{ github.head_ref }}
         run: |
+          sudo chown -R $(whoami) $(brew --prefix)/*
           brew tap logisparte/packages
           brew update
           cd "$TAP_DIRECTORY" || exit 1
