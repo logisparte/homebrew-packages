@@ -3,8 +3,8 @@
 class Kano < Formula
   desc "Software engineering task management CLI"
   homepage "https://github.com/logisparte/kano"
-  url "https://github.com/logisparte/kano/releases/download/3.3.5/kano.tar.gz"
-  sha256 "a589761cc4727e728f30c4e51bb4554908680ea6c841b7fb3eb2a2d18603bf40"
+  url "https://github.com/logisparte/kano/releases/download/3.3.6/kano.tar.gz"
+  sha256 "dada4317cbbc04372b9bfb33816111574769be635ea4a768da36b2ea815ca41c"
   license "GPL-3.0-only"
   depends_on "docker" => :optional
 
