@@ -4,6 +4,11 @@
 
 Index des paquets de logisparte pour le gestionnaire de paquet [Homebrew](https://brew.sh)
 
+## Licence
+
+`homebrew-packages` est _libre comme dans liberté_, sous les termes de la
+[licence GPL-3.0](/LICENSE)
+
 ## Usage
 
 Tout d'abord, suivre l'index de paquet :

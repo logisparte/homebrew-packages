@@ -4,6 +4,10 @@
 
 logisparte's package index for the [Homebrew](https://brew.sh) package manager
 
+## License
+
+`homebrew-packages` is _free as in freedom_, under the terms of the [GPL-3.0 License](/LICENSE)
+
 ## Usage
 
 First, track the package index:
