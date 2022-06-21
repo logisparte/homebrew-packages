@@ -1,29 +1,28 @@
-name: CI
+name: ci
 
 on:
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
+
+env:
+  TAP_DIRECTORY: /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/logisparte/homebrew-packages
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  check_branch:
+    runs-on: ubuntu-22.04
     container:
-      image: homebrew/brew:3.1.12
-      env:
-        TAP_DIRECTORY: /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/logisparte/homebrew-packages
+      image: homebrew/brew:3.5.2
     steps:
-      - name: Clone (from package index)
-        env:
-          GIT_BRANCH: ${{ github.head_ref }}
+      - name: Retrieve package index
         run: |
           brew tap logisparte/packages
           brew update
-          cd "$TAP_DIRECTORY" || exit 1
-          git checkout "$GIT_BRANCH"
 
-      - name: Verify all formulas
+      - name: Check all package definitions
         run: |
           cd "$TAP_DIRECTORY" || exit 1
+          git checkout "$GITHUB_HEAD_REF"
           for FORMULA_PATH in *.rb; do
             FORMULA="$(basename "$FORMULA_PATH" | cut -d "." -f 1)"
             brew cat "$FORMULA"

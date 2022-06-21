@@ -2,7 +2,7 @@
 
 > Lire en [Français](/docs/README.fr.md)
 
-Logisparte's package index for the [Homebrew](https://brew.sh) package manager
+logisparte's package index for the [Homebrew](https://brew.sh) package manager
 
 ## Usage
 

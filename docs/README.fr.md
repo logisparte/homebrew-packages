@@ -2,7 +2,7 @@
 
 > Read in [English](/docs/README.md)
 
-Index des paquets de Logisparte pour le gestionnaire de paquet [Homebrew](https://brew.sh)
+Index des paquets de logisparte pour le gestionnaire de paquet [Homebrew](https://brew.sh)
 
 ## Usage
 
