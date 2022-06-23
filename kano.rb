@@ -6,8 +6,8 @@ class Kano < Formula
   url "https://github.com/logisparte/kano/releases/download/3.6.0/kano.tar.gz"
   sha256 "636a98be7eba78d99b085fb573caa13cac841693deec52fd6315062f3bd49819"
   license "GPL-3.0-only"
-  depends_on "docker" => :optional
   depends_on "git" => :optional
+  depends_on cask: "docker" => :optional
 
   def install
     libexec.install Dir["libexec/*"]
