@@ -8,6 +8,13 @@ class Kano < Formula
   license "GPL-3.0-only"
   depends_on "git" => :optional
 
+  def install
+    libexec.install Dir["libexec/*"]
+    doc.install Dir["share/doc/*"]
+    prefix.install "LICENSE"
+    bin.write_exec_script (libexec/"kano")
+  end
+
   def caveats
     <<~EOS
       Homebrew formula does not support this syntax:
@@ -18,13 +25,6 @@ class Kano < Formula
 
       To install Docker Desktop
     EOS
-  end
-
-  def install
-    libexec.install Dir["libexec/*"]
-    doc.install Dir["share/doc/*"]
-    prefix.install "LICENSE"
-    bin.write_exec_script (libexec/"kano")
   end
 
   test do
