@@ -3,8 +3,8 @@
 class Kano < Formula
   desc "Software engineering workflow automation CLI"
   homepage "https://github.com/logisparte/kano"
-  url "https://github.com/logisparte/kano/releases/download/3.6.3/kano.tar.gz"
-  sha256 "7f1ff5327ae3712218cfbbadb634d67b2ad6a263a1da6329dde63fc6cfa8f07a"
+  url "https://github.com/logisparte/kano/releases/download/4.0.0/kano.tar.gz"
+  sha256 "9c5d453dd476bbbfae7c892200649201aa59ef9018b49dc5165d2f58fe18eb3a"
   license "GPL-3.0-only"
   depends_on "git" => :optional
 
