@@ -3,16 +3,16 @@
 class Kano < Formula
   desc "Software engineering workflow automation CLI"
   homepage "https://github.com/logisparte/kano"
-  url "https://github.com/logisparte/kano/releases/download/4.0.0/kano.tar.gz"
-  sha256 "9c5d453dd476bbbfae7c892200649201aa59ef9018b49dc5165d2f58fe18eb3a"
+  url "https://github.com/logisparte/kano/releases/download/4.1.0/kano.tar.gz"
+  sha256 "b3af23b719b4f84d0f859f6777a9205377ebad4e33b0c9d26abe655cb0cf7662"
   license "GPL-3.0-only"
   depends_on "git" => :optional
 
   def install
-    libexec.install Dir["libexec/*"]
+    lib.install Dir["lib/*"]
     doc.install Dir["share/doc/*"]
     prefix.install "LICENSE"
-    bin.write_exec_script (libexec/"kano")
+    bin.write_exec_script (lib/"kano")
   end
 
   def caveats
