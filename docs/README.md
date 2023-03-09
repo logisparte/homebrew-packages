@@ -6,7 +6,7 @@ logisparte's package index for the [Homebrew](https://brew.sh) package manager
 
 ## License
 
-`homebrew-packages` is _free as in freedom_, under the terms of the [GPL-3.0 License](/LICENSE)
+`homebrew-packages` is distributed under the terms of the [Apache 2.0 license](/LICENSE)
 
 ## Usage
 
