@@ -3,9 +3,9 @@
 class Kano < Formula
   desc "Software engineering workflow automation CLI"
   homepage "https://github.com/logisparte/kano"
-  url "https://github.com/logisparte/kano/releases/download/4.4.0/kano.tar.gz"
-  sha256 "5131b3a0071ba568271cd4084e6c4c2d610de9a92328c33b7d84296989185274"
-  license "GPL-3.0-only"
+  url "https://github.com/logisparte/kano/releases/download/5.0.1/kano.tar.gz"
+  sha256 "2b62719af34ce1fecaa4313b2d14b4a71a3f5b2fb07c7d6ba7259828eaba2be0"
+  license "Apache-2.0"
   depends_on "git" => :optional
 
   def install
@@ -26,7 +26,7 @@ class Kano < Formula
   end
 
   test do
-    help_output = shell_output("kano help")
+    help_output = shell_output("#{bin}/kano help")
     assert_match(/Show this help message/, help_output)
   end
 end
