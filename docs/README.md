@@ -1,7 +1,5 @@
 # homebrew-packages
 
-> Lire en [Français](/docs/README.fr.md)
-
 logisparte's package index for the [Homebrew](https://brew.sh) package manager
 
 ## License

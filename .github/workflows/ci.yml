@@ -6,11 +6,10 @@ on:
       - master
 
 jobs:
-  check_branch:
-    runs-on: macos-12
+  check-branch:
+    runs-on: macos-latest
     env:
       HOMEBREW_NO_INSTALL_CLEANUP: true
-      HOMEBREW_DIRECTORY: /usr/local/Homebrew
     steps:
       - name: Retrieve package index
         run: |
@@ -19,7 +18,7 @@ jobs:
 
       - name: Check all package definitions
         run: |
-          cd "$HOMEBREW_DIRECTORY/Library/Taps/logisparte/homebrew-packages" || exit 1
+          cd "$(brew --prefix)/Library/Taps/logisparte/homebrew-packages" || exit 1
           git checkout "$GITHUB_HEAD_REF"
           brew developer on
           for FILE in $(ls | grep .rb); do
