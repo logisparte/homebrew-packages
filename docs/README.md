@@ -1,6 +1,6 @@
 # homebrew-packages
 
-logisparte's package index for the [Homebrew](https://brew.sh) package manager
+Our package index for the [Homebrew](https://brew.sh) package manager
 
 ## License
 
